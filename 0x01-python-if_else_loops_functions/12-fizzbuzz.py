@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 def fizzbuzz():
     for n in range(1, 101):
         if n % 3 == 0 and n % 5 == 0:
@@ -7,4 +8,4 @@ def fizzbuzz():
         elif n % 5 == 0:
             print("Buzz", end=" ")
         else:
-            print(n, end=" ")
+            print("{0}".format(n), end=" ")
