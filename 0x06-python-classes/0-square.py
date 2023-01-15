@@ -4,3 +4,4 @@
 
 class Square:
     """No attrs of Square"""
+    pass
