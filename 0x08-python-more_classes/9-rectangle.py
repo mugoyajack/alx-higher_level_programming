@@ -4,6 +4,8 @@
 
 class Rectangle:
     """class Rectangle"""
+    number_of_instances = 0
+    print_symbol = "#"
 
     def __init__(self, width=0, height=0):
         """Initialization of width and heigth
@@ -13,8 +15,9 @@ class Rectangle:
             height (int): Height of the rectangle
 
          """
-        self.width = width
-        self.height = height
+        self.__width = width
+        self.__height = height
+        type(self).number_of_instances += 1
 
     @property
     def width(self):
@@ -60,9 +63,53 @@ class Rectangle:
         if self.__height != 0 and self.__height != 0:
             rect = []
             for i in range(self.__height):
-                [rect.append('#') for j in range(self.__width)]
+                [rect.append(str(self.print_symbol))
+                    for j in range(self.__width)]
                 if i != self.__height - 1:
                     rect.append("\n")
             return ("".join(rect))
         else:
             return ""
+
+    def __repr__(self):
+        """Return string representation of rect
+            to be able to recreate a new instancw using eval().
+        """
+
+        return ("Rectangle(" + str(self.__width) +
+                ", " + str(self.__height) + ")")
+
+    def __del__(self):
+        """Print msg on deletion of any instance of rect"""
+        type(self).number_of_instances -= 1
+        print("Bye rectangle...")
+
+    @staticmethod
+    def bigger_or_equal(rect_1, rect_2):
+        """Returns the biggest rect based on area
+
+        Args:
+            rect_1 (Rectangle): The first Rectangle.
+            rect_2 (Rectangle): The second Rectangle.
+        Raises:
+            TypeError: If either rect_1 or rect_2 is not of type Rectangle.
+
+        """
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if rect_1.area() >= rect_2.area():
+            return rect_1
+        else:
+            return rect_2
+
+    @classmethod
+    def square(cls, size=0):
+        """Returns a new rect(square)
+
+        Args:
+            size (int): Height and width of square
+
+        """
+        return cls(size, size)
