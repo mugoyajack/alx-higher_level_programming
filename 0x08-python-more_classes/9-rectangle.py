@@ -15,8 +15,8 @@ class Rectangle:
             height (int): Height of the rectangle
 
          """
-        self.__width = width
-        self.__height = height
+        self.width = width
+        self.height = height
         type(self).number_of_instances += 1
 
     @property
@@ -53,14 +53,14 @@ class Rectangle:
 
     def perimeter(self):
         """Return perimeter of the rectangle"""
-        if self.__height != 0 and self.__height != 0:
+        if self.__height != 0 and self.__width != 0:
             return self.__height * 2 + 2 * self.__width
         else:
             return 0
 
     def __str__(self):
         """Print rect with #"""
-        if self.__height != 0 and self.__height != 0:
+        if self.__height != 0 and self.__width != 0:
             rect = []
             for i in range(self.__height):
                 [rect.append(str(self.print_symbol))
