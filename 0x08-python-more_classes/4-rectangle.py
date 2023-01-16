@@ -66,3 +66,11 @@ class Rectangle:
             return ("".join(rect))
         else:
             return ""
+
+    def __repr__(self):
+        """Return string representation of rect
+            to be able to recreate a new instancw using eval().
+        """
+
+        return ("Rectangle(" + str(self.__width) +
+                ", " + str(self.__height) + ")")
